@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:18:26 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:27:33 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:52:58 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,22 @@ void	take_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(&data->forks[right]);
 		print_status(philo, "has taken a fork");
+		if (check_death(philo))
+		{
+			pthread_mutex_unlock(&data->forks[right]);
+			return ;
+		}
 		pthread_mutex_lock(&data->forks[left]);
 	}
 	else
 	{
 		pthread_mutex_lock(&data->forks[left]);
 		print_status(philo, "has taken a fork");
+		if (check_death(philo))
+		{
+			pthread_mutex_unlock(&data->forks[left]);
+			return ;
+		}
 		pthread_mutex_lock(&data->forks[right]);
 	}
 	print_status(philo, "has taken a fork");
