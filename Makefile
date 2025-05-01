@@ -19,8 +19,11 @@ NC = \033[0m
 CLEAR_LINE = \033[2K\r
 
 SRCS =			main.c \
+				initialize.c \
                 utils.c \
-                philo_routine.c
+				mutex.c \
+				threads.c \
+                philo_routine.c \
 				
 
 # Object files

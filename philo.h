@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:03:01 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:52:59 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include <sys/time.h>
 
 # define USAGE_MSG "Usage: ./philo [num_of_philos (1 - 200)] [time_to_die (60+)] \
-	[time_to_eat (60+)] [time_to_sleep (60+)] [optional_limit_of_meals (1+)]\n"
+	[time_to_eat (60+)] [time_to_sleep (60+)] [optional_limit_of_meals (1+)]\n \
+	Example usage:\n./philo 5 800 200 200 3\n"
 
 typedef struct s_data
 {
@@ -45,18 +46,27 @@ typedef struct s_philo
 	t_data	*data;
 }					t_philo;
 
+// INITIALIZE.C
+
+void				init_data(t_data *data, int argc, char **argv);
+
+// MUTEX.C
+
+void				init_mutexes(t_data *data);
+void				destroy_mutexes(t_data *data);
+void				take_forks(t_philo *philo);
+void				release_forks(t_philo *philo);
+
+// THREADS.C
+
+void				create_threads(t_data *data, t_philo *philos, \
+					pthread_t *threads);
+void				join_threads(t_data *data, pthread_t *threads);
+
 long				get_time_msec(void);
 void				print_status(t_philo *philo, const char *status);
 int					check_death(t_philo *philo);
 int					get_is_dead(t_data *data);
-void				take_forks(t_philo *philo);
-void				release_forks(t_philo *philo);
 void				*philosopher_routine(void *arg);
-void				init_data(t_data *data, int argc, char **argv);
-void				init_mutexes(t_data *data);
-void				destroy_mutexes(t_data *data);
-void				create_threads(t_data *data, t_philo *philos, \
-					pthread_t *threads);
-void				join_threads(t_data *data, pthread_t *threads);
 
 #endif
