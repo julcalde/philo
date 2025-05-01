@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 20:42:14 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:44:05 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	*philosopher_routine(void *arg)
 		if (check_death(philo))
 			break ;
 		print_status(philo, "is sleeping");
-		while (get_time_msec() < (get_time_msec() + data->time_to_sleep) && \ //
+		while (get_time_msec() < (get_time_msec() + data->time_to_sleep) && \
 			!get_is_dead(philo->data)) //
 			usleep(100); //
 		// ft_usleep(philo->data->time_to_sleep, philo); //
