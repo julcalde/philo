@@ -1,0 +1,43 @@
+// File: philo.h
+
+#ifndef PHILO_H
+# define PHILO_H
+
+# include <pthread.h>
+
+typedef struct s_data
+{
+    int				num_philos;
+    int				time_to_die;
+    int				time_to_eat;
+    int				time_to_sleep;
+    int				required_meals;
+    int				is_dead;
+    pthread_mutex_t	*forks;
+    pthread_mutex_t	print_mutex;
+    pthread_mutex_t	dead_mutex;
+    long			start_time;
+}					t_data;
+
+typedef struct s_philo
+{
+    int		id;
+    long	last_meal_time;
+    int		meals_eaten;
+    t_data	*data;
+}					t_philo;
+
+long				get_time_msec(void);
+void				print_status(t_philo *philo, const char *status);
+int					check_death(t_philo *philo);
+int					get_is_dead(t_data *data);
+void				take_forks(t_philo *philo);
+void				release_forks(t_philo *philo);
+void				*philosopher_routine(void *arg);
+void				init_mutexes(t_data *data);
+void				destroy_mutexes(t_data *data);
+void				create_threads(t_data *data, t_philo *philos,
+                        pthread_t *threads);
+void				join_threads(t_data *data, pthread_t *threads);
+
+#endif
