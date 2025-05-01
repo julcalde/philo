@@ -1,8 +1,16 @@
-// File: philo_routine.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
+/*   Updated: 2025/05/01 14:30:24 by julcalde         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 # include "philo.h"
-# include <unistd.h>
-# include <stdlib.h>
 
 void	take_forks(t_philo *philo)
 {

@@ -1,9 +1,16 @@
-// File: utils.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
+/*   Updated: 2025/05/01 14:30:34 by julcalde         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 # include "philo.h"
-# include <sys/time.h>
-# include <pthread.h>
-# include <stdio.h>
 
 long	get_time_msec(void)
 {

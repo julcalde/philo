@@ -1,11 +1,16 @@
-// File: main.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/01 14:29:19 by julcalde          #+#    #+#             */
+/*   Updated: 2025/05/01 14:29:40 by julcalde         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "philo.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <pthread.h>
-# include <unistd.h>
-# include <sys/time.h>
+#include "philo.h"
 
 int		main(int argc, char **argv)
 {

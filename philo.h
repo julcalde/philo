@@ -1,9 +1,24 @@
-// File: philo.h
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
+/*   Updated: 2025/05/01 14:30:03 by julcalde         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include "philo.h"
+# include <stdlib.h>
+# include <stdio.h>
 # include <pthread.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_data
 {
