@@ -6,13 +6,13 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:30:37 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:14:39 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	eat(t_philo *philo)
+static void	eat(t_philo *philo)
 {
 	t_data	*data;
 	long	now;
@@ -25,7 +25,7 @@ void	eat(t_philo *philo)
 	usleep(data->time_to_eat * 1000);
 }
 
-void	think(t_philo *philo)
+static void	think(t_philo *philo)
 {
 	print_status(philo, "is thinking");
 }
@@ -57,9 +57,18 @@ void	*philosopher_routine(void *arg)
 		if (check_death(philo))
 			break ;
 		print_status(philo, "is sleeping");
-		usleep(data->time_to_sleep * 1000);
+		ft_usleep(data->time_to_sleep, philo);
 		if (required_meals != -1 && philo->meals_eaten >= required_meals)
 			break ;
 	}
 	return (NULL);
+}
+
+void	ft_usleep(long ms, t_philo *philo)
+{
+	long	start;
+
+	start = get_time_msec();
+	while ((get_time_msec() - start) < ms && !get_is_dead(philo->data))
+		usleep(500);
 }

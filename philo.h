@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:52:59 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:14:13 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,18 @@ void				create_threads(t_data *data, t_philo *philos, \
 					pthread_t *threads);
 void				join_threads(t_data *data, pthread_t *threads);
 
+
+// PHILO_ROUTINE.C
+
+void				*philosopher_routine(void *arg);
+void				ft_usleep(long ms, t_philo *philo);
+
+// UTILS.C
+
 long				get_time_msec(void);
 void				print_status(t_philo *philo, const char *status);
 int					check_death(t_philo *philo);
 int					get_is_dead(t_data *data);
-void				*philosopher_routine(void *arg);
+
 
 #endif
