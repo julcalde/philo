@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 14:30:03 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:03:01 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,29 @@
 # include <unistd.h>
 # include <sys/time.h>
 
+# define USAGE_MSG "Usage: ./philo [num_of_philos (1 - 200)] [time_to_die (60+)] \
+	[time_to_eat (60+)] [time_to_sleep (60+)] [optional_limit_of_meals (1+)]\n"
+
 typedef struct s_data
 {
-    int				num_philos;
-    int				time_to_die;
-    int				time_to_eat;
-    int				time_to_sleep;
-    int				required_meals;
-    int				is_dead;
-    pthread_mutex_t	*forks;
-    pthread_mutex_t	print_mutex;
-    pthread_mutex_t	dead_mutex;
-    long			start_time;
+	int				num_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				required_meals;
+	int				is_dead;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	dead_mutex;
+	long			start_time;
 }					t_data;
 
 typedef struct s_philo
 {
-    int		id;
-    long	last_meal_time;
-    int		meals_eaten;
-    t_data	*data;
+	int		id;
+	long	last_meal_time;
+	int		meals_eaten;
+	t_data	*data;
 }					t_philo;
 
 long				get_time_msec(void);
@@ -49,10 +52,11 @@ int					get_is_dead(t_data *data);
 void				take_forks(t_philo *philo);
 void				release_forks(t_philo *philo);
 void				*philosopher_routine(void *arg);
+void				init_data(t_data *data, int argc, char **argv);
 void				init_mutexes(t_data *data);
 void				destroy_mutexes(t_data *data);
-void				create_threads(t_data *data, t_philo *philos,
-                        pthread_t *threads);
+void				create_threads(t_data *data, t_philo *philos, \
+					pthread_t *threads);
 void				join_threads(t_data *data, pthread_t *threads);
 
 #endif

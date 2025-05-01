@@ -6,11 +6,11 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 14:33:15 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:04:28 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#include "philo.h"
 
 long	get_time_msec(void)
 {
