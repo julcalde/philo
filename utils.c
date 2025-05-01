@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:28:56 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:49:22 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,17 @@ void	print_status(t_philo *philo, const char *status)
 int	check_death(t_philo *philo)
 {
 	long	current_time;
-	long	death_time;
-	t_data	*data;
 
-	data = philo->data;
 	current_time = get_time_msec();
-	death_time = philo->last_meal_time + data->time_to_eat + data->time_to_die;
-	if (current_time >= death_time)
+	if (current_time - philo->last_meal_time >= philo->data->time_to_die)
 	{
-		pthread_mutex_lock(&data->dead_mutex);
-		if (!data->is_dead)
+		pthread_mutex_lock(&philo->data->dead_mutex);
+		if (!philo->data->is_dead)
 		{
-			data->is_dead = 1;
+			philo->data->is_dead = 1;
 			print_status(philo, "died");
 		}
-		pthread_mutex_unlock(&data->dead_mutex);
+		pthread_mutex_unlock(&philo->data->dead_mutex);
 		return (1);
 	}
 	return (0);

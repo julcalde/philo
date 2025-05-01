@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 16:14:13 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:41:50 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void				join_threads(t_data *data, pthread_t *threads);
 // PHILO_ROUTINE.C
 
 void				*philosopher_routine(void *arg);
-void				ft_usleep(long ms, t_philo *philo);
+// void				ft_usleep(long ms, t_philo *philo); //
 
 // UTILS.C
 

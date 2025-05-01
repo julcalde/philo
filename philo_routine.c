@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 16:14:39 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:42:14 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 static void	eat(t_philo *philo)
 {
-	t_data	*data;
-	long	now;
+	long	start;
+	long	end;
 
-	data = philo->data;
-	now = get_time_msec();
-	philo->last_meal_time = now;
+	start = get_time_msec();
+	end = start + philo->data->time_to_eat;
 	print_status(philo, "is eating");
-	philo->meals_eaten += 1;
-	usleep(data->time_to_eat * 1000);
+	philo->last_meal_time = start;
+	philo->meals_eaten++;
+	while (get_time_msec() < end && !get_is_dead(philo->data)) //
+		usleep(100); //
+	// ft_usleep(philo->data->time_to_eat, philo); //
 }
 
 static void	think(t_philo *philo)
@@ -57,18 +59,19 @@ void	*philosopher_routine(void *arg)
 		if (check_death(philo))
 			break ;
 		print_status(philo, "is sleeping");
-		ft_usleep(data->time_to_sleep, philo);
-		if (required_meals != -1 && philo->meals_eaten >= required_meals)
-			break ;
+		while (get_time_msec() < (get_time_msec() + data->time_to_sleep) && \ //
+			!get_is_dead(philo->data)) //
+			usleep(100); //
+		// ft_usleep(philo->data->time_to_sleep, philo); //
 	}
 	return (NULL);
 }
 
-void	ft_usleep(long ms, t_philo *philo)
-{
-	long	start;
+// void	ft_usleep(long ms, t_philo *philo) //
+// { //
+// 	long	start; //
 
-	start = get_time_msec();
-	while ((get_time_msec() - start) < ms && !get_is_dead(philo->data))
-		usleep(500);
-}
+// 	start = get_time_msec(); //
+// 	while ((get_time_msec() - start) < ms && !get_is_dead(philo->data)) //
+// 		usleep(100); //
+// } //
