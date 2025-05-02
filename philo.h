@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 20:41:50 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:22:45 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 // INITIALIZE.C
 
 void				init_data(t_data *data, int argc, char **argv);
-int				ft_atoi(const char *str)
+int					ft_atoi(const char *str);
 
 // MUTEX.C
 

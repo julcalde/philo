@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:16:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:52:55 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:27:55 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_atoi(const char *str)
 		sign = -1;
 		i++;
 	}
-	while (str[i] && ft_isdigit(str[i]))
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
 		result *= 10;
 		result += str[i] - 48;
