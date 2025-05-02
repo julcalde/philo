@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 20:44:05 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:02:18 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,40 @@ void	*philosopher_routine(void *arg)
 	}
 	return (NULL);
 }
+
+// Suggested alternative to the above function
+// void	*philosopher_routine(void *arg)
+// {
+// 	t_philo	*philo;
+// 	t_data	*data;
+// 	int		required_meals;
+// 	long	end_time;
+
+// 	philo = (t_philo *)arg;
+// 	data = philo->data;
+// 	required_meals = data->required_meals;
+// 	while (!get_is_dead(data))
+// 	{
+// 		if (required_meals != -1 && philo->meals_eaten >= required_meals)
+// 			break ;
+// 		think(philo);
+// 		take_forks(philo);
+// 		if (get_is_dead(data))
+// 		{
+// 			release_forks(philo);
+// 			break ;
+// 		}
+// 		eat(philo);
+// 		release_forks(philo);
+// 		if (get_is_dead(data))
+// 			break ;
+// 		print_status(philo, "is sleeping");
+// 		end_time = get_time_msec() + data->time_to_sleep;
+// 		while (get_time_msec() < end_time && !get_is_dead(data))
+// 			usleep(100);
+// 	}
+// 	return (NULL);
+// }
 
 // void	ft_usleep(long ms, t_philo *philo) //
 // { //
