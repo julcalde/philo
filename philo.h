@@ -49,6 +49,7 @@ typedef struct s_philo
 // INITIALIZE.C
 
 void				init_data(t_data *data, int argc, char **argv);
+int				ft_atoi(const char *str)
 
 // MUTEX.C
 
