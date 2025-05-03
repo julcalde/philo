@@ -6,14 +6,14 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/03 21:03:14 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/03 21:12:19 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void	*philosopher_routine(void *arg)
-{
+{ 
 	t_philo	*philo;
 	t_data	*data;
 	int		required_meals;
