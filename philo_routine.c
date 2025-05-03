@@ -6,11 +6,14 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/03 21:12:19 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/03 21:18:12 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	perform_cycle(t_philo *philo);
+
 
 void	*philosopher_routine(void *arg)
 { 
@@ -25,24 +28,35 @@ void	*philosopher_routine(void *arg)
 	{
 		if (required_meals != -1 && philo->meals_eaten >= required_meals)
 			break ;
-		routine_think(philo);
-		take_forks(philo);
-		if (data->num_philos == 1)
-		{
-			release_forks(philo);
-			if (check_death(philo))
-				break ;
-			continue ;
-		}
-		if (check_death(philo))
-			break ;
-		routine_eat(philo);
-		release_forks(philo);
-		if (check_death(philo))
-			break ;
-		routine_sleep(philo);
-		if (required_meals != -1 && philo->meals_eaten >= required_meals)
+		if (!perform_cycle(philo))
 			break ;
 	}
 	return (NULL);
+}
+
+static int	perform_cycle(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	routine_think(philo);
+	take_forks(philo);
+	if (data->num_philos == 1)
+	{
+		release_forks(philo);
+		if (check_death(philo))
+			return (0);
+		return (1);
+	}
+	if (check_death(philo))
+		return (0);
+	routine_eat(philo);
+	release_forks(philo);
+	if (check_death(philo))
+		return (0);
+	routine_sleep(philo);
+	if (data->required_meals != -1 && \
+		philo->meals_eaten >= data->required_meals)
+		return (0);
+	return (1);
 }
