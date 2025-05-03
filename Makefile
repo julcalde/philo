@@ -19,6 +19,7 @@ NC = \033[0m
 CLEAR_LINE = \033[2K\r
 
 SRCS =			main.c \
+				actions.c \
 				initialize.c \
                 utils.c \
 				mutex.c \

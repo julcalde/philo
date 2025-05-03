@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 18:49:22 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:49:51 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,12 @@ int	get_is_dead(t_data *data)
 	is_dead = data->is_dead;
 	pthread_mutex_unlock(&data->dead_mutex);
 	return (is_dead);
+}
+void	ft_usleep(long ms, t_philo *philo)
+{
+	long	start;
+
+	start = get_time_msec();
+	while ((get_time_msec() - start) < ms && !get_is_dead(philo->data))
+		usleep(100);
 }

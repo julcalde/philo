@@ -6,31 +6,11 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/02 15:02:18 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/03 21:03:14 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	eat(t_philo *philo)
-{
-	long	start;
-	long	end;
-
-	start = get_time_msec();
-	end = start + philo->data->time_to_eat;
-	print_status(philo, "is eating");
-	philo->last_meal_time = start;
-	philo->meals_eaten++;
-	while (get_time_msec() < end && !get_is_dead(philo->data)) //
-		usleep(100); //
-	// ft_usleep(philo->data->time_to_eat, philo); //
-}
-
-static void	think(t_philo *philo)
-{
-	print_status(philo, "is thinking");
-}
 
 void	*philosopher_routine(void *arg)
 {
@@ -45,67 +25,24 @@ void	*philosopher_routine(void *arg)
 	{
 		if (required_meals != -1 && philo->meals_eaten >= required_meals)
 			break ;
-		think(philo);
+		routine_think(philo);
 		take_forks(philo);
 		if (data->num_philos == 1)
 		{
 			release_forks(philo);
-			break ;
+			if (check_death(philo))
+				break ;
+			continue ;
 		}
 		if (check_death(philo))
 			break ;
-		eat(philo);
+		routine_eat(philo);
 		release_forks(philo);
 		if (check_death(philo))
 			break ;
-		print_status(philo, "is sleeping");
-		while (get_time_msec() < (get_time_msec() + data->time_to_sleep) && \
-			!get_is_dead(philo->data)) //
-			usleep(100); //
-		// ft_usleep(philo->data->time_to_sleep, philo); //
+		routine_sleep(philo);
+		if (required_meals != -1 && philo->meals_eaten >= required_meals)
+			break ;
 	}
 	return (NULL);
 }
-
-// Suggested alternative to the above function
-// void	*philosopher_routine(void *arg)
-// {
-// 	t_philo	*philo;
-// 	t_data	*data;
-// 	int		required_meals;
-// 	long	end_time;
-
-// 	philo = (t_philo *)arg;
-// 	data = philo->data;
-// 	required_meals = data->required_meals;
-// 	while (!get_is_dead(data))
-// 	{
-// 		if (required_meals != -1 && philo->meals_eaten >= required_meals)
-// 			break ;
-// 		think(philo);
-// 		take_forks(philo);
-// 		if (get_is_dead(data))
-// 		{
-// 			release_forks(philo);
-// 			break ;
-// 		}
-// 		eat(philo);
-// 		release_forks(philo);
-// 		if (get_is_dead(data))
-// 			break ;
-// 		print_status(philo, "is sleeping");
-// 		end_time = get_time_msec() + data->time_to_sleep;
-// 		while (get_time_msec() < end_time && !get_is_dead(data))
-// 			usleep(100);
-// 	}
-// 	return (NULL);
-// }
-
-// void	ft_usleep(long ms, t_philo *philo) //
-// { //
-// 	long	start; //
-
-// 	start = get_time_msec(); //
-// 	while ((get_time_msec() - start) < ms && !get_is_dead(philo->data)) //
-// 		usleep(100); //
-// } //
