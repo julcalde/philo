@@ -1,0 +1,29 @@
+(Test 4 410 200 200. No philosopher should die.)
+
+./philo	4 410 200 200
+Result:
+10 1 is thinking
+10 1 has taken a fork
+10 1 has taken a fork
+10 1 is eating
+11 4 is thinking
+11 4 has taken a fork
+11 3 is thinking
+11 3 has taken a fork
+11 3 has taken a fork
+11 3 is eating
+11 2 is thinking
+210 1 is sleeping
+210 2 has taken a fork
+212 3 is sleeping
+212 4 has taken a fork
+212 4 has taken a fork
+212 4 died
+212 2 has taken a fork
+212 2 has taken a fork
+
+Description:
+(before 200ms)
+Philosophers 1 & 3 take two forks and eat, while 2 thinks.
+But Philosopher 4 takes a fork and does nothing else for first 200ms and holds it until he dies at 212ms.
+Strange: The time_to_die is set to 410 and Philosopher 4 does not perform thinking or sleeping meanwhile.

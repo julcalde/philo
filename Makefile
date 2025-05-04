@@ -1,4 +1,4 @@
-NAME = philo_git
+NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 OBJ_DIR := ./obj
