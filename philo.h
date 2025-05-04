@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/03 21:01:31 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 14:27:51 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	dead_mutex;
 	long			start_time;
-}					t_data;
+}		t_data;
 
 typedef struct s_philo
 {
@@ -44,44 +44,47 @@ typedef struct s_philo
 	long	last_meal_time;
 	int		meals_eaten;
 	t_data	*data;
-}					t_philo;
+}		t_philo;
 
 // ACTIONS.C
 
-void	routine_eat(t_philo *philo);
-void	routine_think(t_philo *philo);
-void	routine_sleep(t_philo *philo);
+void		routine_eat(t_philo *philo);
+void		routine_think(t_philo *philo);
+void		routine_sleep(t_philo *philo);
+
+// FORKS.C
+
+void		take_forks(t_philo *philo);
+void		release_forks(t_philo *philo);
 
 // INITIALIZE.C
 
-void				init_data(t_data *data, int argc, char **argv);
-int					ft_atoi(const char *str);
+void		init_data(t_data *data, int argc, char **argv);
+int			ft_atoi(const char *str);
 
 // MUTEX.C
 
-void				init_mutexes(t_data *data);
-void				destroy_mutexes(t_data *data);
-void				take_forks(t_philo *philo);
-void				release_forks(t_philo *philo);
+void		init_mutexes(t_data *data);
+void		destroy_mutexes(t_data *data);
 
 // THREADS.C
 
-void				create_threads(t_data *data, t_philo *philos, \
-					pthread_t *threads);
-void				join_threads(t_data *data, pthread_t *threads);
+void		create_threads(t_data *data, t_philo *philos, \
+			pthread_t *threads);
+void		join_threads(t_data *data, pthread_t *threads);
 
 
 // PHILO_ROUTINE.C
 
-void				*philosopher_routine(void *arg);
+void		*philosopher_routine(void *arg);
 
 // UTILS.C
 
-long				get_time_msec(void);
-void				print_status(t_philo *philo, const char *status);
-int					check_death(t_philo *philo);
-int					get_is_dead(t_data *data);
-void				ft_usleep(long ms, t_philo *philo);
+long		get_time_msec(void);
+void		print_status(t_philo *philo, const char *status);
+int			check_death(t_philo *philo);
+int			get_is_dead(t_data *data);
+void		ft_usleep(long ms, t_philo *philo);
 
 
 #endif
