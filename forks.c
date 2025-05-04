@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 16:43:43 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:57:52 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,18 @@
 // 	print_status(philo, "has taken a fork");
 // }
 
-static int	take_first_fork(t_philo *philo, int *first, int *second)
+void	take_forks(t_philo *philo)
+{
+	int	first;
+	int	second;
+
+	if (take_first_fork(philo, &first, &second))
+		return ;
+	if (take_second_fork(philo, first, second))
+		return (take_forks(philo));
+}
+
+int	take_first_fork(t_philo *philo, int *first, int *second)
 {
 	t_data	*data;
 
@@ -77,7 +88,7 @@ static int	take_first_fork(t_philo *philo, int *first, int *second)
 	return (0);
 }
 
-static int	take_second_fork(t_philo *philo, int first, int second)
+int	take_second_fork(t_philo *philo, int first, int second)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -91,17 +102,6 @@ static int	take_second_fork(t_philo *philo, int first, int second)
 	}
 	print_status(philo, "has taken a fork");
 	return (0);
-}
-
-void	take_forks(t_philo *philo)
-{
-	int	first;
-	int	second;
-
-	if (take_first_fork(philo, &first, &second))
-		return ;
-	if (take_second_fork(philo, first, second))
-		return (take_forks(philo));
 }
 
 void	release_forks(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:45:54 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 17:05:48 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:55:58 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	routine_eat(t_philo *philo)
 	data = philo->data;
 	print_status(philo, "is eating");
 	philo->meals_eaten++;
-	// philo->last_meal_time = get_time_msec();
+	philo->last_meal_time = get_time_msec();
 	ft_usleep(data->time_to_eat, philo);
 	if (get_is_dead(data))
 		return (0);
@@ -31,9 +31,9 @@ void	routine_think(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
+	print_status(philo, "is thinking");
 	if (data->num_philos % 2 == 0)
 		ft_usleep(10, philo);
-	print_status(philo, "is thinking");
 }
 
 int	routine_sleep(t_philo	*philo)
