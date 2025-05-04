@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/03 21:18:12 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:01:24 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	perform_cycle(t_philo *philo)
 
 	data = philo->data;
 	routine_think(philo);
+	philo->last_meal_time = get_time_msec();
 	take_forks(philo);
 	if (data->num_philos == 1)
 	{
