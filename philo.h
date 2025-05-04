@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 14:27:51 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:39:48 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void		join_threads(t_data *data, pthread_t *threads);
 // PHILO_ROUTINE.C
 
 void		*philosopher_routine(void *arg);
+int			try_even_philo(t_philo *philo, int first, int second);
+int			try_odd_philo(t_philo *philo, int first, int second);
 
 // UTILS.C
 

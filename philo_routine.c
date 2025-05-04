@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 16:01:24 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:44:12 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,36 @@ static int	perform_cycle(t_philo *philo)
 		philo->meals_eaten >= data->required_meals)
 		return (0);
 	return (1);
+}
+
+int	try_even_philo(t_philo *philo, int first, int second)
+{
+	t_data	*data;
+
+	data = philo->data;
+	if (pthread_mutex_trylock(&data->forks[first]))
+	{
+		pthread_mutex_unlock(&data->forks[second]);
+		ft_usleep(10, philo);
+		if (check_death(philo))
+			return (0);
+		return (1);
+	}
+	return (0);
+}
+
+int	try_odd_philo(t_philo *philo, int first, int second)
+{
+	t_data	*data;
+
+	data = philo->data;
+	if (pthread_mutex_trylock(&data->forks[second]))
+	{
+		pthread_mutex_unlock(&data->forks[first]);
+		ft_usleep(10, philo);
+		if (check_death(philo))
+			return (0);
+		return (1);
+	}
+	return (0);
 }

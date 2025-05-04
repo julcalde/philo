@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 14:37:58 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:43:43 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,15 @@ static int	take_first_fork(t_philo *philo, int *first, int *second)
 
 static int	take_second_fork(t_philo *philo, int first, int second)
 {
-	t_data	*data;
-
-	data = philo->data;
 	if (philo->id % 2 == 0)
 	{
-		if (pthread_mutex_trylock(&data->forks[first]))
-		{
-			pthread_mutex_unlock(&data->forks[second]);
-			return (ft_usleep(10, philo), 1);
-		}
+		if (try_even_philo(philo, first, second))
+			return (1);
 	}
 	else
 	{
-		if (pthread_mutex_trylock(&data->forks[second]))
-		{
-			pthread_mutex_unlock(&data->forks[first]);
-			return (ft_usleep(10, philo), 1);
-		}
+		if (try_odd_philo(philo, first, second))
+			return (1);
 	}
 	print_status(philo, "has taken a fork");
 	return (0);
