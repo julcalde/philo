@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:19 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/01 15:53:34 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:50:02 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 	if (argc < 5 || argc > 6)
 		return (printf (USAGE_MSG), EXIT_FAILURE);
 	init_data(&data, argc, argv);
-	i = 0;
 	while (i < data.num_philos)
 	{
 		philos[i].id = i;
