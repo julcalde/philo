@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 18:58:14 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:44:26 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ int			take_first_fork(t_philo *philo, int *first, int *second);
 int			take_second_fork(t_philo *philo, int first, int second);
 void		release_forks(t_philo *philo);
 
+// FORKS_UTILS.C
+
+int			acquire_even_first(t_philo *philo, int *first, int *second);
+int			acquire_odd_first(t_philo *philo, int *first, int *second);
+int			acquire_even_second(t_philo *philo, int first, int second);
+int			acquire_odd_second(t_philo *philo, int first, int second);
+
 // INITIALIZE.C
 
 void		init_data(t_data *data, int argc, char **argv);
@@ -74,8 +81,6 @@ void		destroy_mutexes(t_data *data);
 
 void		*philosopher_routine(void *arg);
 int			perform_cycle(t_philo *philo);
-int			try_even_philo(t_philo *philo, int first, int second);
-int			try_odd_philo(t_philo *philo, int first, int second);
 
 
 // THREADS.C
