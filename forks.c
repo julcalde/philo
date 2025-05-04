@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 20:26:48 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 20:49:43 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,21 @@ int	take_first_fork(t_philo *philo, int *first, int *second)
 	*second = (philo->id + 1) % data->num_philos;
 	if (data->num_philos == 1)
 	{
-		if (check_death(philo))
-			return (1);
+		// if (check_death(philo))
+		// 	return (1);
 		pthread_mutex_lock(&data->forks[*first]);
 		print_status(philo, "has taken a fork");
 		return (1);
 	}
 	if (philo->id % 2 == 0)
 	{
-		acquire_even_first(philo, first, second);
+		if (acquire_even_first(philo, first, second))
+			return (0);
 	}
 	else
 	{
-		acquire_odd_first(philo, first, second);
+		if (acquire_odd_first(philo, first, second))
+			return (0);
 	}
 	return (0);
 }
@@ -67,17 +69,16 @@ int	take_second_fork(t_philo *philo, int first, int second)
 void	release_forks(t_philo *philo)
 {
 	t_data	*data;
-	int		first;
-	int		second;
 
 	data = philo->data;
-	first = philo->id;
-	second = (philo->id + 1) % data->num_philos;
 	if (data->num_philos == 1)
-		pthread_mutex_unlock(&data->forks[first]);
+	{
+		pthread_mutex_unlock(&data->forks[philo->id]);
+		return ;
+	}
 	else
 	{
-		pthread_mutex_unlock(&data->forks[first]);
-		pthread_mutex_unlock(&data->forks[second]);
+		pthread_mutex_unlock(&data->forks[philo->id]);
+		pthread_mutex_unlock(&data->forks[(philo->id + 1) % data->num_philos]);
 	}
 }
