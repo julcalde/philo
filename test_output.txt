@@ -1,88 +1,43 @@
-(Test 4 410 200 200. No philosopher should die.)
-
-./philo	4 410 200 200
-Result:
-10 1 is thinking
+0 1 is thinking
+0 4 is thinking
+0 2 is thinking
+0 3 is thinking
 10 1 has taken a fork
-10 1 has taken a fork
-10 1 is eating
-11 4 is thinking
-11 4 has taken a fork
-11 3 is thinking
-11 3 has taken a fork
-11 3 has taken a fork
-11 3 is eating
-11 2 is thinking
-210 1 is sleeping
-210 2 has taken a fork
-212 3 is sleeping
-212 4 has taken a fork
-212 4 has taken a fork
-212 4 died
-212 2 has taken a fork
-212 2 has taken a fork
-
-Description:
-(before 200ms)
-Philosophers 1 & 3 take two forks and eat, while 2 thinks.
-But Philosopher 4 takes a fork and does nothing else for first 200ms and holds it until he dies at 212ms.
-Strange: The time_to_die is set to 410 and Philosopher 4 does not perform thinking or sleeping meanwhile.
-[SOLVED]
-
---------------------------------------------------------------------------------------------------------
-(Test 4 310 200 100. One philosopher should die.)
-
-./philo 4 310 200 100  
-10 4 is thinking
 10 4 has taken a fork
-10 4 has taken a fork
-10 4 is eating
-10 2 is thinking
 10 2 has taken a fork
-10 2 has taken a fork
-10 2 is eating
-10 1 is thinking
-10 3 is thinking
-210 4 is sleeping
-210 2 is sleeping
-210 3 has taken a fork
-210 3 has taken a fork
-210 3 is eating
-210 1 has taken a fork
-210 1 has taken a fork
-210 1 is eating
-320 2 is thinking
-320 4 is thinking
-410 2 has taken a fork
-410 1 is sleeping
-410 2 has taken a fork
-410 2 is eating
-410 4 has taken a fork
-411 4 has taken a fork
-411 4 is eating
-410 3 is sleeping
-520 1 is thinking
-521 3 is thinking
-610 2 is sleeping
-610 1 has taken a fork
-611 4 is sleeping
-611 3 has taken a fork
-611 3 has taken a fork
-611 3 is eating
-621 1 has taken a fork
-621 1 has taken a fork
-621 1 is eating
-720 2 is thinking
-721 4 is thinking
-811 3 is sleeping
-811 4 has taken a fork
-827 1 is sleeping
-827 4 has taken a fork
-827 4 has taken a fork
-827 4 is eating
-828 2 has taken a fork
-828 2 has taken a fork
-828 2 is eating
-
-Description:
-No deaths happening, even after 10 cycles. Timestamps are not in ascending order.
+10 3 has taken a fork
+20 2 has taken a fork
+20 2 has taken a fork
+20 2 is eating
+20 1 has taken a fork
+20 1 has taken a fork
+20 1 is eating
+30 3 has taken a fork
+30 3 has taken a fork
+30 3 is eating
+30 4 has taken a fork
+30 4 has taken a fork
+30 4 is eating
+220 2 is sleeping
+220 1 is sleeping
+230 3 is sleeping
+230 4 is sleeping
+420 2 is thinking
+420 1 is thinking
+430 4 is thinking
+430 2 has taken a fork
+430 2 died
+430 2 has taken a fork
+430 2 has taken a fork
+430 1 has taken a fork
+430 1 has taken a fork
+430 1 has taken a fork
+430 4 has taken a fork
+430 4 has taken a fork
+430 4 has taken a fork
+430 4 is eating
+430 3 is thinking
+430 3 has taken a fork
+430 3 has taken a fork
+430 3 has taken a fork
+430 3 is eating
