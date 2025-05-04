@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 16:39:48 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/04 17:05:12 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ typedef struct s_philo
 
 // ACTIONS.C
 
-void		routine_eat(t_philo *philo);
+int			routine_eat(t_philo *philo);
 void		routine_think(t_philo *philo);
-void		routine_sleep(t_philo *philo);
+int			routine_sleep(t_philo *philo);
 
 // FORKS.C
 
