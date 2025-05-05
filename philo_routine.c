@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 20:47:22 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:42:31 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@ int	perform_cycle(t_philo *philo)
 
 	data = philo->data;
 	routine_think(philo);
-	if (data->num_philos == 1)
-	{
-		take_forks(philo);
-		release_forks(philo);
-		if (check_death(philo))
-			return (0);
-		return (1);
-	}
 	take_forks(philo);
 	if (check_death(philo))
 		return (0);

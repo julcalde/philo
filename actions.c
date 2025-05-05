@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:45:54 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 20:22:17 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:40:54 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	routine_think(t_philo *philo)
 
 	data = philo->data;
 	print_status(philo, "is thinking");
-	if (data->num_philos % 2 == 0)
-		ft_usleep(10, philo);
+	ft_usleep(10, philo);
 }
 
 int	routine_sleep(t_philo	*philo)
