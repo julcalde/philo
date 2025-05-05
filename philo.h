@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 19:44:26 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:54:00 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				required_meals;
-	int				is_dead;
+	volatile int	is_dead; // Ensure proper synchronization
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	dead_mutex;
@@ -55,16 +55,7 @@ int			routine_sleep(t_philo *philo);
 // FORKS.C
 
 void		take_forks(t_philo *philo);
-int			take_first_fork(t_philo *philo, int *first, int *second);
-int			take_second_fork(t_philo *philo, int first, int second);
 void		release_forks(t_philo *philo);
-
-// FORKS_UTILS.C
-
-int			acquire_even_first(t_philo *philo, int *first, int *second);
-int			acquire_odd_first(t_philo *philo, int *first, int *second);
-int			acquire_even_second(t_philo *philo, int first, int second);
-int			acquire_odd_second(t_philo *philo, int first, int second);
 
 // INITIALIZE.C
 

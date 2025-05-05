@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/04 19:20:57 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:23:05 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ void	ft_usleep(long ms, t_philo *philo)
 	long	start;
 
 	start = get_time_msec();
-	while (get_time_msec() - start < ms && !get_is_dead(philo->data))
+	while (get_time_msec() - start < ms)
+	{
+		if (get_is_dead(philo->data))
+			break ;
 		usleep(100);
+	}
 }

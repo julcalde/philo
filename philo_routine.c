@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/05 16:42:31 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:54:08 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,23 @@ int	perform_cycle(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	routine_think(philo);
-	take_forks(philo);
 	if (check_death(philo))
 		return (0);
-	if (!routine_eat(philo))
+	take_forks(philo);
+	if (check_death(philo))
+	{
+		release_forks(philo);
 		return (0);
+	}
+	if (!routine_eat(philo))
+	{
+		release_forks(philo);
+		return (0);
+	}
 	release_forks(philo);
 	if (!routine_sleep(philo))
 		return (0);
+	routine_think(philo);
 	if (data->required_meals != -1 && \
 		philo->meals_eaten >= data->required_meals)
 		return (0);
