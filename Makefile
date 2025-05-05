@@ -21,7 +21,6 @@ CLEAR_LINE = \033[2K\r
 SRCS =			main.c \
 				actions.c \
 				forks.c \
-				forks_utils.c \
 				initialize.c \
                 utils.c \
 				mutex.c \

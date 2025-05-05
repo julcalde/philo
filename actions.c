@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:45:54 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/05 16:40:54 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 21:52:49 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,15 @@ int	routine_eat(t_philo *philo)
 
 void	routine_think(t_philo *philo)
 {
-	t_data	*data;
-
-	data = philo->data;
 	print_status(philo, "is thinking");
 	ft_usleep(10, philo);
 }
 
 int	routine_sleep(t_philo	*philo)
 {
-	t_data	*data;
-
-	data = philo->data;
 	print_status(philo, "is sleeping");
-	ft_usleep(data->time_to_sleep, philo);
-	if (get_is_dead(data))
+	ft_usleep(philo->data->time_to_sleep, philo);
+	if (get_is_dead(philo->data))
 		return (0);
 	return (1);
 }

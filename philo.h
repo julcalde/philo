@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/05 20:54:00 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/05 22:11:10 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-# define USAGE_MSG "Usage: ./philo [num_of_philos (1 - 200)] [time_to_die (60+)] \
-	[time_to_eat (60+)] [time_to_sleep (60+)] [optional_limit_of_meals (1+)]\n \
-	Example usage:\n./philo 5 800 200 200 3\n"
+# define USAGE_MSG "ERROR INVALID INPUT.\nPROPER INPUT VALUES:\n\
+./philo * ** *** **** *****\n\
+* = [num_of_philos (1 - 200)]\n\
+** = [time_to_die (60+)]\n\
+*** = [time_to_eat (60+)]\n\
+**** = [time_to_sleep (60+)]\n\
+***** = [optional_limit_of_meals (1+)]\n\n\
+Example usage: ./philo 5 800 200 200 3\n"
 
 typedef struct s_data
 {
@@ -31,7 +36,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				required_meals;
-	volatile int	is_dead; // Ensure proper synchronization
+	volatile int	is_dead;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	dead_mutex;
