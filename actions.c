@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:45:54 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 14:58:39 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 22:01:33 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int	routine_eat(t_philo *philo)
 
 int	routine_think(t_philo *philo)
 {
+	print_status(philo, "is thinking");
+	ft_usleep(10, philo);
 	if (check_death(philo))
 		return (0);
-	print_status(philo, "is thinking");
 	return (1);
 }
 

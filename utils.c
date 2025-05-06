@@ -6,19 +6,11 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 14:23:52 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:33:41 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-long	get_time_msec(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((long)(tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
 
 void	print_status(t_philo *philo, const char *status)
 {
@@ -57,6 +49,14 @@ int	get_is_dead(t_data *data)
 	is_dead = data->is_dead;
 	pthread_mutex_unlock(&data->dead_mutex);
 	return (is_dead);
+}
+
+long	get_time_msec(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((long)(tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 void	ft_usleep(long ms, t_philo *philo)

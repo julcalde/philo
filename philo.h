@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 14:52:05 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 22:05:36 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
 	int				required_meals;
 	volatile int	is_dead;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	monitor;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	dead_mutex;
 	long			start_time;
@@ -50,6 +51,9 @@ typedef struct s_philo
 	int		meals_eaten;
 	t_data	*data;
 }		t_philo;
+
+// Monitor used to check last meal time for all philosophers
+// Monitor and philos should lock monitor mutex to check last_meal_time
 
 // ACTIONS.C
 
@@ -69,7 +73,7 @@ int			ft_atoi(const char *str);
 
 // MUTEX.C
 
-void		init_mutexes(t_data *data);
+int			init_mutexes(t_data *data);
 void		destroy_mutexes(t_data *data);
 
 

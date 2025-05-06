@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:19 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/05 22:05:00 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:32:01 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_data		data;
+	t_data		data ;
 	pthread_t	threads[200];
 	t_philo		philos[200];
 	int			i;
