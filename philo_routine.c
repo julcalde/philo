@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/05 20:54:08 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:52:49 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,32 @@ int	perform_cycle(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	if (check_death(philo))
-		return (0);
-	take_forks(philo);
-	if (check_death(philo))
+	if (philo->data->num_philos == 1)
+		loner_goner(philo);
+	else
 	{
-		release_forks(philo);
-		return (0);
+		if (check_death(philo))
+			return (0);
+		if (!routine_eat(philo))
+			return (0);
+		// if (check_death(philo))
+		// 	return (0);
+		if (data->required_meals != -1 && \
+			philo->meals_eaten >= data->required_meals)
+			return (0);
 	}
-	if (!routine_eat(philo))
-	{
-		release_forks(philo);
-		return (0);
-	}
-	release_forks(philo);
-	if (!routine_sleep(philo))
-		return (0);
-	routine_think(philo);
-	if (data->required_meals != -1 && \
-		philo->meals_eaten >= data->required_meals)
+	if (check_death(philo))
 		return (0);
 	return (1);
+}
+
+void	loner_goner(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	pthread_mutex_lock(&data->forks[philo->id]);
+	print_status(philo, "has taken a fork");
+	ft_usleep(data->time_to_die, philo);
+	pthread_mutex_unlock(&data->forks[philo->id]);
 }

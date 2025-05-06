@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/05 22:11:10 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:52:05 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_philo
 // ACTIONS.C
 
 int			routine_eat(t_philo *philo);
-void		routine_think(t_philo *philo);
+int			routine_think(t_philo *philo);
 int			routine_sleep(t_philo *philo);
 
 // FORKS.C
@@ -77,7 +77,7 @@ void		destroy_mutexes(t_data *data);
 
 void		*philosopher_routine(void *arg);
 int			perform_cycle(t_philo *philo);
-
+void		loner_goner(t_philo *philo);
 
 // THREADS.C
 
