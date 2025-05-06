@@ -6,11 +6,9 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 13:28:32 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:35:43 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "philo.h"
 
 #include "philo.h"
 
