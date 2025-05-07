@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:18:24 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/07 17:34:37 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:20:18 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	create_threads(t_data *data, t_philo *philos, pthread_t *threads)
 	}
 }
 
-void	join_threads(t_data *data, pthread_t *threads)
-{
-	int	i;
+// void	join_threads(t_data *data, pthread_t *threads)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < data->num_philos)
-	{
-		printf("TID %d exited.\n", (int)threads[i]);
-		pthread_join(threads[i], NULL);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < data->num_philos)
+// 	{
+// 		printf("TID %d exited.\n", (int)threads[i]);
+// 		pthread_join(threads[i], NULL);
+// 		i++;
+// 	}
+// }
