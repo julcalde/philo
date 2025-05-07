@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 22:25:51 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:28:57 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ void	release_forks(t_philo *philo)
 	left = philo->id;
 	right = (philo->id + 1) % philo->data->num_philos;
 
-	pthread_mutex_unlock(&philo->data->forks[left]);
-	pthread_mutex_unlock(&philo->data->forks[right]);
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_unlock(&philo->data->forks[right]);
+		pthread_mutex_unlock(&philo->data->forks[left]);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->data->forks[left]);
+		pthread_mutex_unlock(&philo->data->forks[right]);
+	}
 }

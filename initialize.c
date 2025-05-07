@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:16:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/02 14:27:55 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:51:43 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ int	ft_atoi(const char *str)
 	}
 	result *= sign;
 	return (result);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 14:52:49 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:49:33 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	*philosopher_routine(void *arg)
 	philo = (t_philo *)arg;
 	data = philo->data;
 	philo->last_meal_time = data->start_time;
+	if (philo->data->num_philos == 1)
+	{
+		loner_goner(philo);
+		return (NULL);
+	}
 	while (!get_is_dead(data))
 	{
 		if (data->required_meals != -1 && \
@@ -33,25 +38,20 @@ void	*philosopher_routine(void *arg)
 
 int	perform_cycle(t_philo *philo)
 {
-	t_data	*data;
-
-	data = philo->data;
-	if (philo->data->num_philos == 1)
-		loner_goner(philo);
-	else
-	{
-		if (check_death(philo))
-			return (0);
-		if (!routine_eat(philo))
-			return (0);
-		// if (check_death(philo))
-		// 	return (0);
-		if (data->required_meals != -1 && \
-			philo->meals_eaten >= data->required_meals)
-			return (0);
-	}
-	if (check_death(philo))
+	if (get_is_dead(philo->data))
 		return (0);
+	if (!routine_eat(philo))
+		return (0);
+	if (get_is_dead(philo->data))
+		return (0);
+	if (!routine_sleep(philo))
+		return (0);
+	if (get_is_dead(philo->data))
+		return (0);
+	if (!routine_think(philo))
+		return (0);
+	if (get_is_dead(philo->data)) //
+		return (0);//
 	return (1);
 }
 
@@ -64,4 +64,5 @@ void	loner_goner(t_philo *philo)
 	print_status(philo, "has taken a fork");
 	ft_usleep(data->time_to_die, philo);
 	pthread_mutex_unlock(&data->forks[philo->id]);
+	check_death(philo);
 }

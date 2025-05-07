@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 21:33:41 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:52:08 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	print_status(t_philo *philo, const char *status)
 	pthread_mutex_lock(&philo->data->print_mutex);
 	printf("%ld %d %s\n", current_time, philo->id + 1, status);
 	pthread_mutex_unlock(&philo->data->print_mutex);
+	if (get_is_dead(philo->data) && ft_strcmp(status, "died") != 0)
+		return ;
 }
 
 int	check_death(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:45:54 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 23:25:57 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:14:24 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,24 @@ int	routine_eat(t_philo *philo)
 	philo->meals_eaten++;
 	print_status(philo, "is eating");
 	ft_usleep(data->time_to_eat, philo);
-	if (check_death(philo))
+	release_forks(philo);
+	return (!check_death(philo));
+}
+
+int	routine_sleep(t_philo *philo)
+{
+	if (get_is_dead(philo->data))
 		return (0);
-	routine_sleep(philo);
-	return (1);
+	print_status(philo, "is sleeping");
+	ft_usleep(philo->data->time_to_sleep, philo);
+	return (!check_death(philo));
 }
 
 int	routine_think(t_philo *philo)
 {
+	if (get_is_dead(philo->data))
+		return (0);
 	print_status(philo, "is thinking");
 	ft_usleep(1, philo);
-	if (check_death(philo))
-		return (0);
-	return (1);
-}
-
-int	routine_sleep(t_philo	*philo)
-{
-	release_forks(philo);
-	print_status(philo, "is sleeping");
-	ft_usleep(philo->data->time_to_sleep, philo);
-	if (check_death(philo))
-		return (0);
-	if (!routine_think(philo))
-		return (0);
-	return (1);
+	return (!check_death(philo));
 }

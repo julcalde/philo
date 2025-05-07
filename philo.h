@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 22:05:36 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:51:55 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		release_forks(t_philo *philo);
 
 void		init_data(t_data *data, int argc, char **argv);
 int			ft_atoi(const char *str);
+int			ft_strcmp(const char *s1, const char *s2);
 
 // MUTEX.C
 
