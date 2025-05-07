@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/07 17:16:43 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:16:13 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ void	*philosopher_routine(void *arg)
 int	perform_cycle(t_philo *philo)
 {
 	if (get_is_dead(philo->data))
-		return (1);
+		return (0);
 	if (!routine_eat(philo))
-		return (1);
+		return (0);
 	if (get_is_dead(philo->data))
-		return (1);
+		return (0);
 	if (!routine_sleep(philo))
-		return (1);
+		return (0);
 	if (get_is_dead(philo->data))
-		return (1);
+		return (0);
 	if (!routine_think(philo))
-		return (1);
+		return (0);
 	if (get_is_dead(philo->data))
-		return (1);
+		return (0);
 	return (0);
 }
 
