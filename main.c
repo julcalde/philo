@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:19 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/06 23:20:44 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:35:29 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ void	*monitor(void *arg)
 	data = philos[0].data;
 	while (!get_is_dead(data))
 	{
+		printf("1\n");
 		if (data->required_meals != -1)
 		{
 			done = 1;
 			i = 0;
 			while (i < data->num_philos)
 			{
+				printf("2\n");
 				if (philos[i].meals_eaten < data->required_meals)
 					done = 0;
 				i++;
@@ -39,8 +41,12 @@ void	*monitor(void *arg)
 		i = 0;
 		while (i < data->num_philos)
 		{
+			printf("3\n");
 			if (check_death(&philos[i]))
+			{
+				printf("4\n");
 				return (NULL);
+			}
 			i++;
 		}
 		usleep(1000);
@@ -61,7 +67,7 @@ void	init_ph_and_th(t_data *data, t_philo *philos, pthread_t *threads)
 		philos[i].meals_eaten = 0;
 		i++;
 	}
-	create_threads(data, philos, threads);
+	create_threads(data, philos, threads); // After here mutexes should be exited before detatching
 	i = 0;
 	while (i < data->num_philos)
 	{
@@ -81,8 +87,13 @@ int	main(int argc, char **argv)
 		return (printf(USAGE_MSG), EXIT_FAILURE);
 	init_data(&data, argc, argv);
 	init_ph_and_th(&data, philos, threads);
+	printf("Monitor thread creating.\n");
 	pthread_create(&monitor_thread, NULL, monitor, philos);
+	printf("Monitor thread created.\n");
 	pthread_join(monitor_thread, NULL);
+	printf("Monitor thread joined.\n");
+	join_threads(&data, threads);
+	// usleep(1000);
 	destroy_mutexes(&data);
 	free(data.forks);
 	return (0);

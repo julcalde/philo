@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/07 14:49:33 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:16:43 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@ void	*philosopher_routine(void *arg)
 int	perform_cycle(t_philo *philo)
 {
 	if (get_is_dead(philo->data))
-		return (0);
+		return (1);
 	if (!routine_eat(philo))
-		return (0);
+		return (1);
 	if (get_is_dead(philo->data))
-		return (0);
+		return (1);
 	if (!routine_sleep(philo))
-		return (0);
+		return (1);
 	if (get_is_dead(philo->data))
-		return (0);
+		return (1);
 	if (!routine_think(philo))
-		return (0);
-	if (get_is_dead(philo->data)) //
-		return (0);//
-	return (1);
+		return (1);
+	if (get_is_dead(philo->data))
+		return (1);
+	return (0);
 }
 
 void	loner_goner(t_philo *philo)
@@ -63,6 +63,6 @@ void	loner_goner(t_philo *philo)
 	pthread_mutex_lock(&data->forks[philo->id]);
 	print_status(philo, "has taken a fork");
 	ft_usleep(data->time_to_die, philo);
-	pthread_mutex_unlock(&data->forks[philo->id]);
 	check_death(philo);
+	pthread_mutex_unlock(&data->forks[philo->id]);
 }
