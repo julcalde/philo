@@ -1,8 +1,0 @@
-./philo 4 410 200 200  
-0 1 has taken a fork
-0 1 has taken a fork
-0 3 has taken a fork
-0 3 has taken a fork
-410 1 died
-
-it stops here since I added the monitor functions, but the previous code was running endlessly. even with the test case <./philo 200 800 200 200>
