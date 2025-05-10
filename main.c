@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:19 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 21:28:50 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/10 22:46:59 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,21 @@ void	*monitor(void *arg)
 				i++;
 			}
 			if (done)
+			{
+				pthread_mutex_lock(&data->dead_mutex);
+				data->is_dead = 1;
+				pthread_mutex_unlock(&data->dead_mutex);
 				return (NULL);
+			}
 		}
 		i = 0;
 		while (i < data->num_philos)
 		{
 			if (check_death(&philos[i]))
-			{
 				return (NULL);
-			}
 			i++;
 		}
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }

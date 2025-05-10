@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 22:09:02 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/10 22:41:19 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	take_forks(t_philo *philo)
 
 	left = philo->id;
 	right = (philo->id + 1) % philo->data->num_philos;
-	if (check_death(philo))
+	if (get_is_dead(philo->data))
 		return ;
 	if (philo->id % 2 == 0)
 	{
