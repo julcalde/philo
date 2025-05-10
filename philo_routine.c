@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/07 19:16:13 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/10 21:41:26 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ void	*philosopher_routine(void *arg)
 		loner_goner(philo);
 		return (NULL);
 	}
+	if (philo->id % 2 == 0)
+		usleep(1000);
 	while (!get_is_dead(data))
 	{
 		if (data->required_meals != -1 && \
 			philo->meals_eaten >= data->required_meals)
 			break ;
 		if (!perform_cycle(philo))
+		{
 			break ;
+		}
 	}
 	return (NULL);
 }
@@ -40,19 +44,16 @@ int	perform_cycle(t_philo *philo)
 {
 	if (get_is_dead(philo->data))
 		return (0);
-	if (!routine_eat(philo))
-		return (0);
+	routine_eat(philo); //
 	if (get_is_dead(philo->data))
 		return (0);
-	if (!routine_sleep(philo))
-		return (0);
+	routine_sleep(philo);
 	if (get_is_dead(philo->data))
 		return (0);
-	if (!routine_think(philo))
-		return (0);
+	routine_think(philo);
 	if (get_is_dead(philo->data))
 		return (0);
-	return (0);
+	return (1);
 }
 
 void	loner_goner(t_philo *philo)
