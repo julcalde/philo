@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:19 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 22:46:59 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/10 23:42:15 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*monitor(void *arg)
 				return (NULL);
 			i++;
 		}
-		usleep(500);
+		usleep(100);
 	}
 	return (NULL);
 }
