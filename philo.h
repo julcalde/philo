@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/07 13:51:55 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/10 23:35:44 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-# define USAGE_MSG "ERROR INVALID INPUT.\nPROPER INPUT VALUES:\n\
+# define USAGE_MSG "ERROR INVALID INPUT.\n\nInput 4 to 5 positive numbers.\n\n\
+Instructions:\n\
 ./philo * ** *** **** *****\n\
 * = [num_of_philos (1 - 200)]\n\
-** = [time_to_die (60+)]\n\
-*** = [time_to_eat (60+)]\n\
-**** = [time_to_sleep (60+)]\n\
+** = [time_to_die (60 - 2010)]\n\
+*** = [time_to_eat (60 - 1000)]\n\
+**** = [time_to_sleep (60 - 1000)]\n\
 ***** = [optional_limit_of_meals (1+)]\n\n\
 Example usage: ./philo 5 800 200 200 3\n"
 
