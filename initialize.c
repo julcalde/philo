@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:16:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 23:35:24 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/11 14:57:34 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_data(t_data *data, int argc, char **argv)
 		data->required_meals = ft_atoi(argv[5]);
 	else
 		data->required_meals = -1;
-	if ((data->num_philos <= 1 || data->num_philos > 200) || \
+	if ((data->num_philos < 1 || data->num_philos > 200) || \
 		(data->time_to_die < 60 || data->time_to_die > 2010) || \
 		(data->time_to_eat < 60 || data->time_to_eat > 1000) || \
 		(data->time_to_sleep < 60 || data->time_to_sleep > 1000))

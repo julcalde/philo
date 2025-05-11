@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:32 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 22:35:37 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/11 14:56:37 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	ft_usleep(long ms, t_philo *philo)
 	{
 		if (get_is_dead(philo->data))
 			break ;
-		usleep(100);
+		usleep(500);
 	}
 }
