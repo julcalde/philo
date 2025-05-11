@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:25:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 22:41:19 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:03:29 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	odd_ph_id(t_philo *philo)
 
 	left = philo->id;
 	right = (philo->id + 1) % philo->data->num_philos;
-	pthread_mutex_lock(&philo->data->forks[left]); // here is the deadlock
+	pthread_mutex_lock(&philo->data->forks[left]);
 	if (get_is_dead(philo->data))
 	{
 		pthread_mutex_unlock(&philo->data->forks[left]);
@@ -62,11 +62,6 @@ void	odd_ph_id(t_philo *philo)
 
 void	take_forks(t_philo *philo)
 {
-	int	left;
-	int	right;
-
-	left = philo->id;
-	right = (philo->id + 1) % philo->data->num_philos;
 	if (get_is_dead(philo->data))
 		return ;
 	if (philo->id % 2 == 0)
@@ -90,7 +85,6 @@ void	release_forks(t_philo *philo)
 
 	left = philo->id;
 	right = (philo->id + 1) % philo->data->num_philos;
-
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_unlock(&philo->data->forks[right]);

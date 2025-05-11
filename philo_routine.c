@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:12 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 21:41:26 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:11:32 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	perform_cycle(t_philo *philo)
 {
 	if (get_is_dead(philo->data))
 		return (0);
-	routine_eat(philo); //
+	routine_eat(philo);
 	if (get_is_dead(philo->data))
 		return (0);
 	routine_sleep(philo);

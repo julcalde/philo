@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:29:55 by julcalde          #+#    #+#             */
-/*   Updated: 2025/05/10 23:35:44 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:10:26 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ typedef struct s_philo
 	t_data	*data;
 }		t_philo;
 
-// Monitor used to check last meal time for all philosophers
-// Monitor and philos should lock monitor mutex to check last_meal_time
-
 // ACTIONS.C
 
 int			routine_eat(t_philo *philo);
@@ -64,6 +61,8 @@ int			routine_sleep(t_philo *philo);
 
 // FORKS.C
 
+void		even_ph_id(t_philo *philo);
+void		odd_ph_id(t_philo *philo);
 void		take_forks(t_philo *philo);
 void		release_forks(t_philo *philo);
 
@@ -78,7 +77,6 @@ int			ft_strcmp(const char *s1, const char *s2);
 int			init_mutexes(t_data *data);
 void		destroy_mutexes(t_data *data);
 
-
 // PHILO_ROUTINE.C
 
 void		*philosopher_routine(void *arg);
@@ -87,10 +85,9 @@ void		loner_goner(t_philo *philo);
 
 // THREADS.C
 
-void		create_threads(t_data *data, t_philo *philos, \
-			pthread_t *threads);
-void		join_threads(t_data *data, pthread_t *threads);
-
+void		create_threads(t_data *data, t_philo *philos, pthread_t *threads);
+void		init_ph_and_th(t_data *data, t_philo *philos, pthread_t *threads);
+void		*monitor(void *arg);
 
 // UTILS.C
 
@@ -99,6 +96,5 @@ void		print_status(t_philo *philo, const char *status);
 int			check_death(t_philo *philo);
 int			get_is_dead(t_data *data);
 void		ft_usleep(long ms, t_philo *philo);
-
 
 #endif
